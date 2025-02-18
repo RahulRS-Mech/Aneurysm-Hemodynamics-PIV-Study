@@ -5,8 +5,6 @@ This project focuses on **transforming real medical imaging data from AneuDesk i
 
 These models closely mimic actual vascular structures, allowing researchers to **study blood flow behavior, velocity fields, and wall shear stress (WSS)** under controlled experimental conditions. This work bridges the gap between **patient-specific imaging and experimental research**, ensuring accurate aneurysm modeling for in-vitro analysis.  
 
----
-
 
 ## 🔬 **Key Objectives**
 - ✅ **Source patient-specific aneurysm geometries** from **AneuDesk medical imaging datasets**.  
@@ -14,7 +12,6 @@ These models closely mimic actual vascular structures, allowing researchers to *
 - ✅ **Optimize model accuracy** to match **in-vitro flow conditions**.  
 - ✅ **Prepare high-resolution 3D-printable models** for fluid dynamics studies.  
 
----
 
 ## 🛠 **Tools & Technologies Used**
 ### **Software**
@@ -32,7 +29,6 @@ These models closely mimic actual vascular structures, allowing researchers to *
 - **CAD Modeling & Refinement** – Ensuring **smooth, experimentally viable** models.  
 - **Biomechanics & Flow Optimization** – Structuring models for **fluid analysis**.  
 
----
 
 ## 🔬 **Methodology**
 ### **1️⃣ Sourcing & Processing Medical Imaging Data**
@@ -67,7 +63,6 @@ These models closely mimic actual vascular structures, allowing researchers to *
   - Measured **diameters, wall thickness, and curvature consistency**.  
   - Compared **segmented 3D models with original medical scan data** to ensure accuracy.  
 
----
 
 ## 📊 **Key Findings & Takeaways**
 - ✅ **Accurately converted raw CT/MRI aneurysm data into high-resolution 3D models**.  

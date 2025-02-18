@@ -1,71 +1,87 @@
 # Aneurysm-Hemodynamics-PIV-Study
-Explores the impact of human body movement on aneurysm hemodynamics using Particle Image Velocimetry (PIV). 
-## **Overview**  
-This project focuses on **transforming real medical imaging data from AneuDesk into 3D-printed aneurysm models**, enabling detailed in-vitro hemodynamic studies. By leveraging **advanced segmentation techniques and CAD modeling**, we extracted aneurysm geometries from medical scans, processed them for smoothness and accuracy, and prepared them for 3D printing.  
+Explores the impact of human body movement on aneurysm hemodynamics using Particle Image Velocimetry (PIV).
 
-These models closely mimic actual vascular structures, allowing researchers to **study blood flow behavior, velocity fields, and wall shear stress (WSS)** under controlled experimental conditions. This work bridges the gap between **patient-specific imaging and experimental research**, ensuring accurate aneurysm modeling for in-vitro analysis.  
+## **Overview**  
+This study investigates how **human body movement affects aneurysm hemodynamics**, specifically focusing on **velocity distribution, wall shear stress (WSS), and oscillatory shear index (OSI)** using **Particle Image Velocimetry (PIV).**  
+
+We employ **Prana (PIV tool)** for **velocity field extraction and multi-pass image correlation**, allowing precise analysis of flow structures under **static and dynamic conditions**. Using **high-speed imaging**, we capture fluid motion inside **aneurysm models** under **controlled pulsatile flow** and apply **multi-pass cross-correlation** in Prana to obtain high-accuracy velocity vectors.  
+
+This research enhances our understanding of how **real-world movement alters aneurysm flow patterns**, paving the way for **better risk assessment and medical device designs.**
 
 
 ## 🔬 **Key Objectives**
-- ✅ **Source patient-specific aneurysm geometries** from **AneuDesk medical imaging datasets**.  
-- ✅ **Segment and refine aneurysm models** for **CAD-based experimental use**.  
-- ✅ **Optimize model accuracy** to match **in-vitro flow conditions**.  
-- ✅ **Prepare high-resolution 3D-printable models** for fluid dynamics studies.  
+- ✅ **Use PIV to measure velocity fields** inside patient-specific aneurysm models.  
+- ✅ **Apply Prana multi-pass image correlation** to extract accurate flow velocity data.  
+- ✅ **Analyze WSS and OSI** to understand how movement affects aneurysm rupture risks.  
+- ✅ **Compare static vs. motion conditions** to quantify movement-induced hemodynamic changes.  
 
 
 ## 🛠 **Tools & Technologies Used**
 ### **Software**
-- **AneuDesk** – Sourcing real aneurysm imaging data.  
-- **3D Slicer** – Segmentation of medical imaging data (DICOM) into 3D models.  
-- **Meshmixer** – Refining, smoothing, and modifying aneurysm geometries.  
-- **SolidWorks** – CAD modeling of patient-specific aneurysm structures.  
-- **MATLAB** – Geometric validation and model optimization.  
+- **Prana code (PIV)** – Multi-pass cross-correlation for velocity field extraction.  
+- **MATLAB** – WSS and OSI post-processing, velocity field visualization.  
 
 ### **Hardware**
-- **Resin-Based 3D Printer** – High-resolution printing of vascular models.  
+- **High-Speed Camera (100k dcb16 Mega Speed)** – Capturing PIV images at **1000+ fps**.  
+- **Harvard Apparatus Pulsatile Blood Pump** – Generating controlled pulsatile flow at **60–80 bpm**.  
+- **K40 40W Optical Power Laser** – Creating a laser sheet for precise **PIV measurements**.  
 
 ### **Techniques**
-- **Medical Image Processing** – Extracting aneurysm structures from CT/MRI data.  
-- **CAD Modeling & Refinement** – Ensuring **smooth, experimentally viable** models.  
-- **Biomechanics & Flow Optimization** – Structuring models for **fluid analysis**.  
+- **Particle Image Velocimetry (PIV)** – Velocity field measurements using **tracer particles**.  
+- **Multi-Pass Cross-Correlation (Prana)** – Refining velocity vector accuracy.  
+- **High-Performance Computing (HPC)** – Processing large datasets efficiently.  
 
 
-## 🔬 **Methodology**
-### **1️⃣ Sourcing & Processing Medical Imaging Data**
-- **Raw Data Source:** Obtained **patient-specific aneurysm datasets** from **AneuDesk**.  
-- **Image Segmentation (3D Slicer):**  
-  - Imported **DICOM files** (CT/MRI scans) into **3D Slicer**.  
-  - Applied **threshold-based segmentation** to extract aneurysm geometry.  
-  - Used **region-growing algorithms** to differentiate aneurysmal sac from surrounding vasculature.  
-  - Converted segmented **vascular structures into 3D meshes** for CAD processing.  
+## 🔬 **PIV Study & Prana Processing**
+### **1️⃣ High-Speed Image Acquisition**
+- **Illumination Setup:** A **K40 40W Optical Power Laser** creates a **thin laser sheet** aligned with the aneurysm model’s flow plane.  
+- **Seeding Particles:** **Neutrally buoyant tracer particles** (diameter ~10 µm) suspended in **blood analog fluid** for **flow visualization**.  
+- **High-Speed Recording:**  
+  - **Frame Rate:** 1000+ fps for capturing **high-resolution flow structures**.  
+  - **Exposure Time:** Adjusted for **sharp particle tracking** while minimizing motion blur.  
+  - **Frames per Experiment:** ~8000 frames processed per test case.  
 
-### **2️⃣ Refining & Preparing 3D CAD Models**
-- **Mesh Processing in Meshmixer:**  
-  - **Removed artifacts and unnecessary vascular branches** to focus on the aneurysm sac.  
-  - **Smoothed surfaces** to eliminate irregularities affecting flow dynamics.  
-  - Adjusted **inlet and outlet diameters** to match experimental flow loop requirements.  
+### **2️⃣ Image Preprocessing for PIV**
+- **Background Removal:**  
+  - Captured images processed to remove static noise and reflections.  
+  - Enhancing **particle contrast** for better **cross-correlation accuracy**.  
+- **Filtering:**  
+  - **Gaussian smoothing** applied to reduce high-frequency noise.  
+  - **Thresholding and edge detection** improve tracer particle detection.  
 
-- **Final CAD Modifications in SolidWorks:**  
-  - Optimized **stem diameter and aneurysm sac volume** for experimental testing.  
-  - Ensured **wall thickness consistency** for accurate hemodynamic studies.  
-  - Added **support structures** for stable 3D printing.  
+### **3️⃣ Velocity Field Extraction (Prana)**
+- **Multi-Pass Cross-Correlation Analysis**:  
+  - **Pass 1 (128×128 grid):** Coarse estimation of velocity vectors.  
+  - **Pass 2 (96×96 grid):** Refined calculation with overlapping interrogation windows.  
+  - **Pass 3 (64×64 grid):** High-resolution velocity vector refinement.  
+  - **Vector Validation:** Eliminating spurious vectors using **median filtering**.  
 
-### **3️⃣ 3D Printing & Model Validation**
-- **Material Selection:**  
-  - Printed **aneurysm models using high-resolution resin-based 3D printing**.  
-  - Ensured **vascular smoothness and structural integrity**.  
+- **Velocity Vector Calculation**:  
+  - Extract **U (X-direction) and V (Y-direction) velocity components**.  
+  - Generate **instantaneous and time-averaged velocity fields**.  
 
-- **Printing Process:**  
-  - Used **resin-based SLA 3D printing** to capture intricate vascular details.  
-  - Conducted **post-processing to remove residual resin and enhance accuracy**.  
+### **4️⃣ WSS & OSI Calculation (MATLAB Post-Processing)**
+- **Wall Shear Stress (WSS) Computation:**  
+  - WSS calculated from velocity gradients **near aneurysm walls**.  
+  - Compared between **static vs. dynamic conditions**.  
 
-- **Geometric Validation (MATLAB):**  
-  - Measured **diameters, wall thickness, and curvature consistency**.  
-  - Compared **segmented 3D models with original medical scan data** to ensure accuracy.  
+- **Oscillatory Shear Index (OSI) Analysis:**  
+  - Quantifies flow disturbances caused by motion.  
+  - High OSI regions **correlate with potential aneurysm rupture zones**.  
+
+### **5️⃣ Data Visualization**
+- **MATLAB plots for velocity profiles:**  
+  - Contour plots of **U, V components** at multiple time frames.  
+  - **Streamline visualizations** to track flow recirculation patterns.  
+
+- **Comparison of Static vs. Motion Conditions:**  
+  - Quantifies differences in **flow acceleration, turbulence, and wall stress**.  
+  - Highlights how motion **creates high WSS zones** leading to possible aneurysm rupture risks.  
 
 
-## 📊 **Key Findings & Takeaways**
-- ✅ **Accurately converted raw CT/MRI aneurysm data into high-resolution 3D models**.  
-- ✅ **Optimized models for in-vitro hemodynamic studies** using CAD refinements.  
-- ✅ **Validated model integrity** through MATLAB-based geometric analysis.  
-- ✅ **Created a reproducible process** for future patient-specific aneurysm modeling.  
+## 📊 **Key Findings**
+- ✅ **Motion increases localized turbulence**, leading to **higher WSS and OSI**.  
+- ✅ **Prana's multi-pass correlation method improves velocity vector accuracy**, reducing **false vectors and noise artifacts**.  
+- ✅ **Static vs. Dynamic Analysis:** Movement **significantly alters recirculation patterns** in aneurysms.  
+- ✅ **PIV provides high-resolution velocity data**, enhancing **in-vitro hemodynamic modeling**.  
+
